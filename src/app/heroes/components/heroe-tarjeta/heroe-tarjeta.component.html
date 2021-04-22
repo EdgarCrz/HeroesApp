@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ heroerecibe.superhero }}</mat-card-title>
+    <mat-card-subtitle>{{ heroerecibe.alter_ego }}</mat-card-subtitle>
+  </mat-card-header>
+  <!-- <img mat-card-image src="assets/heroes/{{ heroerecibe.id }}.jpg" /> -->
+  <img mat-card-image [src]="heroerecibe | imagen" />
+  <!-- creamos un pipe solamente para asignarle la imagen -->
+
+  <mat-card-content>
+    <h3>{{ heroerecibe.publisher }}</h3>
+
+    <strong>Primera aparición</strong> {{ heroerecibe.first_appearance }}
+    <br />
+    <strong>Personajes:</strong> {{ heroerecibe.characters }}
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button color="warn" [routerLink]="['/heroes', heroerecibe.id]">
+      <!-- para redirijirnos a ese path utilizamos un routerlink y creamos el path y le añadadimos el id de el heroe -->
+      Leer más
+    </button>
+    <button
+      mat-button
+      color="info"
+      [routerLink]="['/heroes/editar/', heroerecibe.id]"
+    >
+      <!-- para redirijirnos a ese path utilizamos un routerlink y creamos el path y le añadadimos el id de el heroe -->
+      Editar
+    </button>
+  </mat-card-actions>
+</mat-card>

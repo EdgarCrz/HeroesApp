@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+/* Especifica los componentes de una longitud flexible: el factor de crecimiento de flexión y el factor de contracción de flexión, y la base de flexión */
+/* osea rellena el espacio disponible y empuja los elementos a la derecha */

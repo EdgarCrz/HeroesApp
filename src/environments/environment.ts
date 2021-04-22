@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  
+  baseUrl: 'http://localhost:3000',
+
+  // este va a ser el path de desarrollo, cuando aun estemos desarrollando el sitio usaremos un server local de manera que esta ruta solamente serviria en nuestra computadora
 };
 
 /*

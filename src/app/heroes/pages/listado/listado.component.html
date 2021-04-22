@@ -1,0 +1,16 @@
+<h1>Listado de Héroes</h1>
+<mat-divider></mat-divider>
+<br />
+
+<div
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="20px"
+>
+  <div fxFlex="20" fxFlex.lg="15" fxFlex.sm="30" *ngFor="let heroe of heroes">
+    <app-heroe-tarjeta [heroerecibe]="heroe"></app-heroe-tarjeta>
+    <!-- [heroerecibe] le puse asi solo para diferenciar que esta es una propiedad de "heroe-tarjeta.component" -->
+    <!-- y va a tomar el valor que le mandamos osea "heroe" que viene del ng for (o mas bien  del array) -->
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<mat-grid-list cols="1" *ngIf="!heroeResultado; else divHeroe">
+  <!-- estoy condicionando el mat spiner si no hay !heroeResulta entonces muestra el spinner/ de lo contrario muestra "divHeroe" -->
+  <mat-grid-tile>
+    <mat-spinner></mat-spinner>
+    <!-- es la animacion de carga -->
+  </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divHeroe>
+  <!-- Si no hay una directiva estructural y envuelve algunos elementos en una <ng-template>, esos elementos desaparecen. En el siguiente ejemplo, Angular no representa el "Hip!" Del medio en la frase "¡Hip! ¡Hip! ¡Hurra!" debido a los alrededores <ng-template>.  -->
+  <!--Documentacion: https://angular.io/guide/structural-directives#creating-template-fragments-with-ng-template -->
+  <div fxLayout="row" fxLayout.xs="col" fxLayoutGap="30px">
+    <div fxFlex="50">
+      <h1>
+        {{ heroeResultado.superhero }}
+        <small>-{{ heroeResultado.alter_ego }}</small>
+      </h1>
+      <mat-divider></mat-divider>
+      <br />
+      <img [src]="heroeResultado | imagen" />
+    </div>
+    <div fxFlex="50">
+      <h1>{{ heroeResultado.publisher }}</h1>
+      <mat-divider></mat-divider>
+      <br />
+      <mat-list>
+        <mat-list-item>{{ heroeResultado.first_appearance }}</mat-list-item>
+        <mat-list-item>{{ heroeResultado.characters }}</mat-list-item>
+        <mat-list-item>{{ heroeResultado.publisher }}</mat-list-item>
+        <mat-list-item>{{ heroeResultado.alter_ego }}</mat-list-item>
+      </mat-list>
+      <br />
+      <button mat-button color="warn" (click)="regresar()">Regresar</button>
+      <!-- aqui hubiera sido mas facil usar un routerlink routerLink="['/heroe/listado']" / en cambio creé un method para eso-->
+    </div>
+  </div>
+</ng-template>

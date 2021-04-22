@@ -1,0 +1,92 @@
+<h1>
+  {{ heroe.id ? "Editar" : "Nuevo" }}
+  Héroe
+  <small>{{ heroe.superhero }}</small>
+</h1>
+<!-- Esto es solo para cambiar el texto cuando estamos editando o estamos agregando un nuevo heroe -->
+<!-- SUPER OJO AQUÍ! estamos usando un ternario(if else mas pro) para evaluar "si existe heroe id, escribe "editar"  si no "Nuevo" -->
+
+<div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
+  <div fxFlex="50" fxLayout="column">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+      <mat-form-field fxFlex="100">
+        <mat-label>Super Héroe</mat-label>
+        <!-- esta estiqueta solo es un adorno muy bueno: cuando clikeamos sobre el "mat-form-field" el label se mueve y reduce su tamaño de una forma muy bonita-->
+        <input matInput type="text" required [(ngModel)]="heroe.superhero" />
+        <!-- La entrada de estos inputs, su informacion esta recallendo en las propiedades del objeto "heroe" gracias al ngModel que conecta el elemento html con el ts   -->
+      </mat-form-field>
+
+      <mat-form-field fxFlex="100" fxLayout.xs="column">
+        <mat-label>Alter Ego Héroe</mat-label>
+        <!-- esta estiqueta solo es un adorno muy bueno: cuando clikeamos sobre el "mat-form-field" el label se mueve y reduce su tamaño de una forma muy bonita-->
+        <input matInput type="text" required [(ngModel)]="heroe.alter_ego" />
+        <!-- La entrada de estos inputs, su informacion esta recallendo en las propiedades del objeto "heroe" gracias al ngModel que conecta el elemento html con el ts  -->
+      </mat-form-field>
+    </div>
+
+    <!-- estos dos mat-form-field se encuentran dentro de un mismo div po lo cual puedo modificar sus  fxLlayout y fxLayoutGap por separado para que queden en la misma fila y con una separacion de 20-->
+
+    <mat-form-field fxFlex="100">
+      <mat-label>Primera Aparición</mat-label>
+      <!-- esta estiqueta solo es un adorno muy bueno: cuando clikeamos sobre el "mat-form-field" el label se mueve y reduce su tamaño de una forma muy bonita-->
+      <input
+        matInput
+        type="text"
+        required
+        [(ngModel)]="heroe.first_appearance"
+      />
+      <!-- La entrada de estos inputs, su informacion esta recallendo en las propiedades del objeto "heroe" gracias al ngModel que conecta el elemento html con el ts  -->
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <mat-label>Personajes</mat-label>
+      <!-- esta estiqueta solo es un adorno muy bueno: cuando clikeamos sobre el "mat-form-field" el label se mueve y reduce su tamaño de una forma muy bonita-->
+      <input matInput type="text" required [(ngModel)]="heroe.characters" />
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <mat-label>Creador</mat-label>
+      <!-- esta estiqueta solo es un adorno muy bueno: cuando clikeamos sobre el "mat-form-field" el label se mueve y reduce su tamaño de una forma muy bonita-->
+      <mat-select [(ngModel)]="heroe.publisher" required>
+        <!-- La entrada de estos inputs, su informacion esta recallendo en las propiedades del objeto "heroe" gracias al ngModel que conecta el elemento html con el ts -->
+        <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
+          {{ publisher.desc }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <mat-label>Foto URL</mat-label>
+      <!-- esta estiqueta solo es un adorno muy bueno: cuando clikeamos sobre el "mat-form-field" el label se mueve y reduce su tamaño de una forma muy bonita-->
+      <input matInput type="url" [(ngModel)]="heroe.alt_img" required />
+      <!-- La entrada de estos inputs, su informacion esta recallendo en las propiedades del objeto "heroe"  -->
+    </mat-form-field>
+    <br />
+    <div fxLayout>
+      <button mat-raised-button color="primary" (click)="guardar()">
+        <!-- en si este boton no envia los datos de los inputs este boton ejecuta el metodo guardar() -->
+        <!-- los datos de los inpus de mandan de manera inmediata gracias a ngModel -->
+        <mat-icon>edit</mat-icon> {{ heroe.id ? "Actualizar" : "Crear" }}
+        <!-- Esto es solo para cambiar el texto cuando estamos editando o estamos agregando un nuevo heroe -->
+        <!-- SUPER OJO AQUÍ! estamos usando un ternario(if else mas pro) para evaluar "si existe heroe id, escribe "Actualizar"  si no "Crear" -->
+      </button>
+      <span class="spacer"></span>
+      <button
+        *ngIf="heroe.id"
+        mat-raised-button
+        color="warn"
+        (click)="borrarHeroe()"
+      >
+        <mat-icon>remove</mat-icon>
+        Borrar
+      </button>
+    </div>
+  </div>
+  <div fxFlex="50">
+    <img [src]="heroe | imagen" />
+  </div>
+</div>
+
+<!-- fxFlex : basicamente es para repartir el espacio dentro de la pagina 20 , 50, 100  lo usa en porcenatajes -->
+<!-- fxLayout : para saber si vas a usar colums o rows -->
+<!-- fxLayoutGap, ahi lo ocupa para designarle el espacio entre elementos (que tan juntos esta uno de otro)-->
+<!-- mat-form-field :  Contenedor para controles de formulario que aplica el estilo y el comportamiento de Material Design.-->
+<!-- fxLayout.xs="column" donde indique esto significa que al llegar a un tamaño de pantalla extra small(creo) pasara a columnas el acomodo -->
+<!-- [(ngModel)]="heroe.superhero" este es el ngModel con caja de bananas que es two data binding/ ng model sirve para relacionar la informacion que muestra el input, apuntando especificamente a una propiedad de "agregar.component.ts" -->

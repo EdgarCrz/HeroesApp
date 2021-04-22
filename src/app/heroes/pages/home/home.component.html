@@ -1,0 +1,50 @@
+<!-- valida el estado internamente y coordina el fondo y el estilo del contenido. -->
+<mat-sidenav-container fullscreen>
+  <!-- estoy haciendo una referencia local para despues referirme a ese elemento -->
+  <mat-sidenav #sidenav mode="push">
+    <mat-toolbar>
+      <span>Menu</span>
+      <span class="spacer"></span>
+
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-nav-list role="list">
+      <a routerLink="./listado" mat-list-item (click)="sidenav.toggle()">
+        <!-- cuando hago click en este elemento, lo que hace "routerlink" es mandarme al link con esa terminacion osea a esa pagina -->
+        <mat-icon mat-list-icon>list_alt</mat-icon>
+        <span>Listado de Heroes</span>
+      </a>
+    </mat-nav-list>
+    <mat-nav-list role="list">
+      <a routerLink="./agregar" mat-list-item (click)="sidenav.toggle()">
+        <!-- cuando hago click en este elemento, lo que hace "routerlink" es mandarme al link con esa terminacion osea a esa pagina -->
+        <mat-icon mat-list-icon>group_add</mat-icon>
+        <span>Agregar Heroes</span>
+      </a>
+    </mat-nav-list>
+    <mat-nav-list role="list">
+      <a routerLink="./buscar" mat-list-item (click)="sidenav.toggle()">
+        <!-- cuando hago click en este elemento, lo que hace "routerlink" es mandarme al link con esa terminacion osea a esa pagina -->
+        <mat-icon mat-list-icon>person_search</mat-icon>
+        <span>Buscar Heroes</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-toolbar>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="spacer"></span>
+
+    <h1>{{ auth.usuario }}</h1>
+    <button mat-button (click)="logout()">Logout</button>
+  </mat-toolbar>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+    <!-- es una etiqueta especial en Angular que sirve para mostrar los componentes hijos de un componente. -->
+  </div>
+</mat-sidenav-container>
